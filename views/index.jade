@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  //- p Welcome to #{title}
+  #order-book Loading...
+  script(type="text/javascript" src="http://localhost:3001/socket.io/socket.io.js")
+  script(type="text/javascript").
+    var socket = io.connect('http://localhost:3001');
+    socket.on('connected', function(data){
+      console.log('Connected', data.msg);
+    });
+  script(type="text/javascript" src="/js/bundle.js")
+
