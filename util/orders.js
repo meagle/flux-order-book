@@ -1,7 +1,6 @@
 var MAX_REQUESTS, Promise, fs, ordersUrl, request;
 
 Promise = require('bluebird');
-var sleep = require('sleep');
 
 request = Promise.promisify(require('request'));
 
@@ -21,7 +20,6 @@ module.exports = {
       for (var i = 1; i <= MAX_REQUESTS; i++) {
         (function (i) {
           setTimeout(function () {
-            console.log('i', i);
             requests.push(request(ordersUrl));
             if (i === MAX_REQUESTS) resolve(requests);
           }, i * 1000)
@@ -31,9 +29,7 @@ module.exports = {
 
     promise.then(function (promises) {
       Promise.all(promises).then(function(responses){
-        console.log('responses', responses);
         for(var i=0; i < responses.length; i++) {
-          console.log('RESPONSE:', responses[i][1]);
           fileStream.write(responses[i][1]);
           if(i < responses.length - 1)
             fileStream.write(',');
