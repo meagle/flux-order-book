@@ -34,11 +34,8 @@ gulp.task "browserify", ->
       .pipe source destFile
       .pipe gulp.dest destFolder
 
-  logBundleCreationTime = (time)->
-    gulpUtil.log "Finished bundling in #{time/1000} seconds"
-
   bundler.on 'update', rebundle
-  bundler.on 'time', logBundleCreationTime
+  bundler.on 'log', (msg)-> gulpUtil.log msg
 
   rebundle()
 
