@@ -50,7 +50,7 @@ body {
 }
 
 .orderbook {
-  width: 400px;
+  width: 33%;
   min-height: 360px;
   float: left;
   margin: 0;
@@ -96,6 +96,7 @@ body {
   padding: 12px 0;
   font-size: 1.1em;
   color: lightgrey;
+  min-height: 56px;
 }
 
 dl {
