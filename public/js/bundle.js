@@ -22602,7 +22602,7 @@ module.exports = require('./lib/React');
 }.call(this));
 
 },{}],"/Users/meagle/code/flux-order-book/order_book_snapshots.json":[function(require,module,exports){
-module.exports=module.exports=[
+module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=[
   {
     "referenceMarketName": "ICE Cash DX",
     "markets": [
@@ -89294,7 +89294,8 @@ App = React.createClass({
   displayName: 'App',
   getInitialState: function() {
     return _.extend({
-      numberOfOrderBooks: 1
+      numberOfOrderBooks: 1,
+      paused: true
     }, getStateFromStores());
   },
   componentDidMount: function() {
@@ -89312,24 +89313,47 @@ App = React.createClass({
     });
   },
   render: function() {
-    return React.DOM.div(null, React.DOM.div(null, React.DOM.a({
+    return React.DOM.div(null, React.DOM.nav({
+      "role": "navigation",
+      "className": "navbar navbar-default"
+    }, React.DOM.div({
+      "className": "container-fluid"
+    }, React.DOM.div({
+      "className": "navbar-header"
+    }, React.DOM.a({
       "href": "#",
+      "className": "navbar-brand"
+    }, "Flux Order Book Demo")), React.DOM.div({
+      "className": "collapse navbar-collapse"
+    }, React.DOM.ul({
+      "className": "nav navbar-nav"
+    }, React.DOM.li({
+      "className": this._getStartClassName()
+    }, React.DOM.a({
       "onClick": this._startReceivingOrders
-    }, "Start"), " | ", React.DOM.a({
-      "href": "#",
+    }, "Start")), React.DOM.li({
+      "className": this._getStopClassName()
+    }, React.DOM.a({
       "onClick": this._stopReceivingOrders
-    }, "Stop"), " |", React.DOM.a({
-      "href": "#",
+    }, "Stop")), React.DOM.li({
+      "className": this._getAddOrderBookClassName()
+    }, React.DOM.a({
       "onClick": this._addOrderBook
-    }, "Add Order Book")), React.DOM.ul(null, this.state.orderBooks.map(this.renderOrderBook)));
+    }, "Add Order Book")))))), React.DOM.ul(null, this.state.orderBooks.map(this.renderOrderBook)));
   },
   _onChange: function() {
     return this.setState(getStateFromStores());
   },
   _startReceivingOrders: function() {
+    this.setState({
+      paused: false
+    });
     return socket.emit('start:receiving:orders');
   },
   _stopReceivingOrders: function() {
+    this.setState({
+      paused: true
+    });
     return socket.emit('stop:receiving:orders');
   },
   _addOrderBook: function() {
@@ -89338,6 +89362,21 @@ App = React.createClass({
         numberOfOrderBooks: this.state.numberOfOrderBooks + 1
       });
     }
+  },
+  _getStartClassName: function() {
+    return React.addons.classSet({
+      active: !this.state.paused
+    });
+  },
+  _getStopClassName: function() {
+    return React.addons.classSet({
+      active: this.state.paused
+    });
+  },
+  _getAddOrderBookClassName: function() {
+    return React.addons.classSet({
+      hide: this.state.paused
+    });
   }
 });
 
