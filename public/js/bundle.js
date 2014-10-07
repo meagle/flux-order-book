@@ -22602,7 +22602,7 @@ module.exports = require('./lib/React');
 }.call(this));
 
 },{}],"/Users/meagle/code/flux-order-book/order_book_snapshots.json":[function(require,module,exports){
-module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=[
+module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=[
   {
     "referenceMarketName": "ICE Cash DX",
     "markets": [
@@ -89497,7 +89497,7 @@ OrderBook = React.createClass({
     });
   },
   render: function() {
-    return React.DOM.div({
+    return React.DOM.li({
       "className": "orderbook"
     }, React.DOM.div(null, Summary({
       "summary": this.props.orderBook

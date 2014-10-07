@@ -10,7 +10,7 @@ OrderBook = React.createClass
     <PriceLevel priceLevel={priceLevel} key={index}/>
 
   render: ->
-    <div className="orderbook">
+    <li className="orderbook">
       <div><Summary summary={@props.orderBook}/></div>
       <table>
         <thead>
@@ -31,6 +31,6 @@ OrderBook = React.createClass
           {@props.orderBook.orders.map(@renderPriceLevel)}
         </tbody>
       </table>
-    </div>
+    </li>
   
 module.exports = OrderBook

@@ -21,7 +21,7 @@ App = React.createClass
       OrderBookActions.getCurrentOrderBookStats @state.numberOfOrderBooks 
 
   renderOrderBook: (orderBook) ->
-    <OrderBook orderBook={orderBook} key={orderBook.marketId}/>
+    <OrderBook orderBook={orderBook} key={orderBook.marketId} />
 
   render: ->
 
